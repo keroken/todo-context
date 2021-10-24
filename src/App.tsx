@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { TodoList } from './components/TodoList';
 import { TodoForm } from './components/TodoForm';
 import { v4 } from 'uuid';
@@ -8,6 +8,8 @@ export type todoType = {
   item: string;
   isDone: boolean;
 }[];
+
+export const TodoContext = createContext<todoType>([]);
 
 function App() {
   const [todos, setTodos] = useState<todoType>([]);
@@ -23,11 +25,11 @@ function App() {
     setTodos(newTodos);
   };
   return (
-    <>
+    <TodoContext.Provider value={ todos }>
       <h3>Todo Context</h3>
-      <TodoList todos={todos} />
+      <TodoList />
       <TodoForm onNewTodo={onNewTodo} />
-    </>
+    </TodoContext.Provider>
   );
 }
 
