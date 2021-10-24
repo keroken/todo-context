@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { TodoContext } from '../App';
 
-type Props = {
-  onNewTodo: (value: string) => void;
-};
-
-export const TodoForm = ({onNewTodo}: Props) => {
+export const TodoForm = () => {
+  const { onNewTodo } = useContext(TodoContext);
   const [value, setValue] = useState('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

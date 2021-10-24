@@ -8,7 +8,7 @@ export type Props = {
 };
 
 export const TodoList = () => {
-  const todos = useContext(TodoContext);
+  const {todos} = useContext(TodoContext);
   return (
     <ul>
       {todos.map(todo => (

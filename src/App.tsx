@@ -9,7 +9,14 @@ export type todoType = {
   isDone: boolean;
 }[];
 
-export const TodoContext = createContext<todoType>([]);
+export type todoState = {
+  todos: todoType;
+  onNewTodo: (value: string) => void;
+};
+
+export const TodoContext = createContext<todoState>(
+  { todos: [], onNewTodo: () => [] }
+);
 
 function App() {
   const [todos, setTodos] = useState<todoType>([]);
@@ -25,10 +32,10 @@ function App() {
     setTodos(newTodos);
   };
   return (
-    <TodoContext.Provider value={ todos }>
+    <TodoContext.Provider value={{ todos, onNewTodo }}>
       <h3>Todo Context</h3>
       <TodoList />
-      <TodoForm onNewTodo={onNewTodo} />
+      <TodoForm />
     </TodoContext.Provider>
   );
 }
