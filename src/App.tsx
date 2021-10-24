@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import initialTodos from './todo.json';
 import { TodoList } from './components/TodoList';
 import { TodoForm } from './components/TodoForm';
 import { v4 } from 'uuid';
 
+export type todoType = {
+  id: string;
+  item: string;
+  isDone: boolean;
+}[];
+
 function App() {
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useState<todoType>([]);
   const onNewTodo = (value: string) => {
     const newTodos = [
       ...todos,

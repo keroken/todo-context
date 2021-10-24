@@ -1,13 +1,9 @@
 import React from 'react';
-import todos from '../todo.json';
 import { Todo } from './Todo';
+import { todoType } from '../App';
 
-type Props = {
-  todos: {
-    id: string;
-    item: string;
-    isDone: boolean;
-  }[];
+export type Props = {
+  todos: todoType;
 };
 
 export const TodoList = ({todos}: Props) => {
