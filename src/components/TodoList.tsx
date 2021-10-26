@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Todo } from './Todo';
-import { todoType } from '../App';
-import { TodoContext } from '../App';
+import { todoType } from '../state/TodoProvider';
+import { TodoContext } from '../state/TodoProvider';
 
 export type Props = {
   todos: todoType;
