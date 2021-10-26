@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
-import { TodoContext } from '../state/TodoProvider';
+import React, { useState } from 'react';
+import { useTodos } from '../state/TodoProvider';
 
 export const TodoForm = () => {
-  const { onNewTodo } = useContext(TodoContext);
+  const { onNewTodo } = useTodos();
   const [value, setValue] = useState('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

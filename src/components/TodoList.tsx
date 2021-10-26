@@ -1,14 +1,8 @@
-import React, { useContext } from 'react';
 import { Todo } from './Todo';
-import { todoType } from '../state/TodoProvider';
-import { TodoContext } from '../state/TodoProvider';
-
-export type Props = {
-  todos: todoType;
-};
+import { useTodos } from '../state/TodoProvider';
 
 export const TodoList = () => {
-  const {todos} = useContext(TodoContext);
+  const {todos} = useTodos();
   return (
     <ul>
       {todos.map(todo => (
