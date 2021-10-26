@@ -1,20 +1,22 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import { v4 } from 'uuid';
 
-export type todoType = {
+type todoType = {
   id: string;
   item: string;
   isDone: boolean;
 }[];
 
-export type todoState = {
+type todoState = {
   todos: todoType;
   onNewTodo: (value: string) => void;
 };
 
-export const TodoContext = createContext<todoState>(
+const TodoContext = createContext<todoState>(
   { todos: [], onNewTodo: () => [] }
 );
+
+export const useTodos = () => useContext(TodoContext);
 
 type Props = {
   children: React.ReactNode;
