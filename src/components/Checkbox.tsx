@@ -7,14 +7,14 @@ type Props = {
 };
 
 export const Checkbox = ({id, checked}: Props) => {
-  const {onChecked} = useTodos();
+  const {onCheckTodo} = useTodos();
 
   return (
     <>
       <input
         type="checkbox"
         checked={checked}
-        onChange={() => onChecked(id)}
+        onChange={() => onCheckTodo(id)}
       />
     </>
   );

@@ -10,11 +10,11 @@ type todoType = {
 type todoState = {
   todos: todoType;
   onNewTodo: (value: string) => void;
-  onChecked: (id: string) => void;
+  onCheckTodo: (id: string) => void;
 };
 
 const TodoContext = createContext<todoState>(
-  { todos: [], onNewTodo: () => [], onChecked: () => [] }
+  { todos: [], onNewTodo: () => [], onCheckTodo: () => [] }
 );
 
 export const useTodos = () => useContext(TodoContext);
@@ -36,7 +36,7 @@ function TodoProvider({ children }: Props) {
     ];
     setTodos(newTodos);
   };
-  const onChecked = (id: string) => {
+  const onCheckTodo = (id: string) => {
     const newTodos = todos.map(todo => {
       if (todo.id === id) {
         return {
@@ -51,7 +51,7 @@ function TodoProvider({ children }: Props) {
   };
 
   return (
-    <TodoContext.Provider value={{ todos, onNewTodo, onChecked }}>
+    <TodoContext.Provider value={{ todos, onNewTodo, onCheckTodo }}>
       {children}
     </TodoContext.Provider>
   );
