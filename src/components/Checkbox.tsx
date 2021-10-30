@@ -1,14 +1,20 @@
-import React, { useReducer } from 'react';
+import React from 'react';
+import { useTodos } from '../state/TodoProvider';
 
-export const Checkbox = () => {
-  const [checked, handleToggle] = useReducer(checked => !checked, false);
+type Props = {
+  id: string;
+  checked: boolean;
+};
+
+export const Checkbox = ({id, checked}: Props) => {
+  const {onChecked} = useTodos();
 
   return (
     <>
       <input
         type="checkbox"
         checked={checked}
-        onChange={handleToggle}
+        onChange={() => onChecked(id)}
       />
     </>
   );

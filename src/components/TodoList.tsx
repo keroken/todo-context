@@ -6,9 +6,9 @@ export const TodoList = () => {
   const {todos} = useTodos();
   return (
     <ul className="list">
-      {todos.map(todo => (
-        <div className="item-line">
-          <Checkbox />
+      {todos.map((todo, index) => (
+        <div key={index} className="item-line">
+          <Checkbox id={todo.id} checked={todo.isDone} />
           <Todo key={todo.id}>{todo.item}</Todo>
         </div>
       ))}

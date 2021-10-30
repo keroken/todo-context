@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import { isTemplateExpression } from 'typescript';
 import { v4 } from 'uuid';
 
 type todoType = {
@@ -10,10 +11,11 @@ type todoType = {
 type todoState = {
   todos: todoType;
   onNewTodo: (value: string) => void;
+  onChecked: (id: string) => void;
 };
 
 const TodoContext = createContext<todoState>(
-  { todos: [], onNewTodo: () => [] }
+  { todos: [], onNewTodo: () => [], onChecked: () => [] }
 );
 
 export const useTodos = () => useContext(TodoContext);
@@ -35,8 +37,22 @@ function TodoProvider({ children }: Props) {
     ];
     setTodos(newTodos);
   };
+  const onChecked = (id: string) => {
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          isDone: !todo.isDone
+        };
+      } else {
+        return todo;
+      }
+    });
+    setTodos(newTodos);
+  };
+
   return (
-    <TodoContext.Provider value={{ todos, onNewTodo }}>
+    <TodoContext.Provider value={{ todos, onNewTodo, onChecked }}>
       {children}
     </TodoContext.Provider>
   );
