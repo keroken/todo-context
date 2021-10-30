@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext } from 'react';
-import { isTemplateExpression } from 'typescript';
 import { v4 } from 'uuid';
 
 type todoType = {
