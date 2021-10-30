@@ -1,12 +1,16 @@
 import { Todo } from './Todo';
+import { Checkbox } from './Checkbox';
 import { useTodos } from '../state/TodoProvider';
 
 export const TodoList = () => {
   const {todos} = useTodos();
   return (
-    <ul>
+    <ul className="list">
       {todos.map(todo => (
-        <Todo key={todo.id}>{todo.item}</Todo>
+        <div className="item-line">
+          <Checkbox />
+          <Todo key={todo.id}>{todo.item}</Todo>
+        </div>
       ))}
     </ul>
   );
