@@ -11,10 +11,11 @@ type todoState = {
   todos: todoType;
   onNewTodo: (value: string) => void;
   onCheckTodo: (id: string) => void;
+  onDeleteTodo: () => void;
 };
 
 const TodoContext = createContext<todoState>(
-  { todos: [], onNewTodo: () => [], onCheckTodo: () => [] }
+  { todos: [], onNewTodo: () => [], onCheckTodo: () => [], onDeleteTodo: () => [] }
 );
 
 export const useTodos = () => useContext(TodoContext);
@@ -47,11 +48,17 @@ function TodoProvider({ children }: Props) {
         return todo;
       }
     });
+    console.log(newTodos);
+    setTodos(newTodos);
+  };
+  const onDeleteTodo = () => {
+    const newTodos = todos.filter(todo => todo.isDone === false);
+    console.log(newTodos);
     setTodos(newTodos);
   };
 
   return (
-    <TodoContext.Provider value={{ todos, onNewTodo, onCheckTodo }}>
+    <TodoContext.Provider value={{ todos, onNewTodo, onCheckTodo, onDeleteTodo }}>
       {children}
     </TodoContext.Provider>
   );
